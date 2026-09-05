@@ -57,7 +57,7 @@
   .spend-tbl th{padding:5px 6px;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);text-align:left}
   .spend-tbl th:not(:first-child){text-align:right}
   .spend-tbl td{padding:7px 6px;border-bottom:1px solid var(--border)}
-  .spend-tbl td:not(:first-child){text-align:right}
+  .spend-tbl td:not(:first-child){text-align:right;white-space:nowrap}
   .spend-tbl tr:last-child td{border-bottom:none}
   .spend-tbl tr:hover td{background:var(--card)}
   .annual-row{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
@@ -587,12 +587,8 @@ function renderSummary() {
       <thead><tr><th>Month</th><th>Spend / Saving</th><th>Cumulative</th></tr></thead>
       <tbody>${[...rows].reverse().map(r=>`<tr>
         <td style="color:var(--muted);font-size:11px">${r.month}</td>
-        <td style="text-align:right;font-weight:500;color:${r.diff>0?'var(--amber)':'var(--green)'}">
-          ${r.diff>0?'-':'+'}${fabs(Math.abs(r.diff))}
-        </td>
-        <td style="text-align:right;font-weight:500;color:${r.cumulative>=0?'var(--amber)':'var(--green)'}">
-          ${r.cumulative>=0?'-':'+'}${fabs(Math.abs(r.cumulative))}
-        </td>
+        <td style="text-align:right;font-weight:500;color:${r.diff>0?'var(--amber)':'var(--green)'}">${r.diff>0?'-':'+'}${fabs(Math.abs(r.diff))}</td>
+        <td style="text-align:right;font-weight:500;color:${r.cumulative>=0?'var(--amber)':'var(--green)'}">${r.cumulative>=0?'-':'+'}${fabs(Math.abs(r.cumulative))}</td>
       </tr>`).join('')}</tbody></table>`;
   }
 
